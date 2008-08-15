@@ -109,6 +109,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="COPYING" />
     <Content Include="testing\VisualStudioComparisonTools - For Testing.AddIn" />
     <Content Include="VisualStudioComparisonTools.AddIn" />
     <Content Include="Jutut.txt" />
