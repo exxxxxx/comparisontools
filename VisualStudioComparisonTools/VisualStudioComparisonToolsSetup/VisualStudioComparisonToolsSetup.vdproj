@@ -105,18 +105,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_64A21E4FCC2DFD5D90379425A234DE45"
-        "OwnerKey" = "8:_60AED432F1254600A965E81B1D8B2640"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_64A21E4FCC2DFD5D90379425A234DE45"
-        "OwnerKey" = "8:_3B3401100FC7478C997F9EEE53746F9E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_91126EC990584072AE19063C68EE0AD6"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -125,6 +113,18 @@
         {
         "MsmKey" = "8:_9332A8B23DF44B1AA4BCDB758C662D20"
         "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9BE818645524A221B329B0ECD4CA85F2"
+        "OwnerKey" = "8:_3B3401100FC7478C997F9EEE53746F9E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_9BE818645524A221B329B0ECD4CA85F2"
+        "OwnerKey" = "8:_60AED432F1254600A965E81B1D8B2640"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -178,19 +178,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3B3401100FC7478C997F9EEE53746F9E"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_D73E0972B785A276F207D93DA868806F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_0DF1B1CD141ED56710F405A5FBFA66C8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,7 +196,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_64A21E4FCC2DFD5D90379425A234DE45"
+        "OwnerKey" = "8:_0DF1B1CD141ED56710F405A5FBFA66C8"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3B3401100FC7478C997F9EEE53746F9E"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_9BE818645524A221B329B0ECD4CA85F2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -275,10 +275,10 @@
             "ComponentsUrl" = "8:"
                 "Items"
                 {
-                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.3.5"
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Net.Framework.2.0"
                     {
-                    "Name" = "8:.NET Framework 3.5"
-                    "ProductCode" = "8:Microsoft.Net.Framework.3.5"
+                    "Name" = "8:.NET Framework 2.0 (x86)"
+                    "ProductCode" = "8:Microsoft.Net.Framework.2.0"
                     }
                     "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:Microsoft.Windows.Installer.3.1"
                     {
@@ -489,37 +489,6 @@
             "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_64A21E4FCC2DFD5D90379425A234DE45"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821"
-                "ScatterAssemblies"
-                {
-                    "_64A21E4FCC2DFD5D90379425A234DE45"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:log4net.dll"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_7B061BBEBEE14AD2B686162D0F4EA49A"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_91126EC990584072AE19063C68EE0AD6"
             {
             "SourcePath" = "8:..\\VisualStudioComparisonTools\\log4net.LICENSE.txt"
@@ -558,6 +527,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9BE818645524A221B329B0ECD4CA85F2"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821"
+                "ScatterAssemblies"
+                {
+                    "_9BE818645524A221B329B0ECD4CA85F2"
+                    {
+                    "Name" = "8:log4net.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:log4net.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_7B061BBEBEE14AD2B686162D0F4EA49A"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_A7C3728A0F0D54B7AE163132B49000D3"
@@ -782,14 +782,14 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:VisualStudioComparisonTools"
-        "ProductCode" = "8:{0525ACF9-EB07-4BD8-8364-B86BA949B0EA}"
-        "PackageCode" = "8:{CC450E0B-CFD5-4298-BF9F-ECD7E50CD6C8}"
+        "ProductCode" = "8:{614BBF02-8BD4-4B4E-9CAC-BF5F8EC4AAA1}"
+        "PackageCode" = "8:{5FA83E35-EDC3-4E4B-9AA9-5A3F94B8EE8E}"
         "UpgradeCode" = "8:{6C0E0EA0-6AED-447E-98FA-1ABD5ECFEBA0}"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0"
+        "ProductVersion" = "8:1.0.1"
         "Manufacturer" = "8:Mikko Halttunen"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1303,7 +1303,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_3B3401100FC7478C997F9EEE53746F9E"
             {
-            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Debug\\VisualStudioComparisonTools.dll"
+            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Release\\VisualStudioComparisonTools.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_1260379A7DB54577BBD1BE7BD4A2BE0F"
@@ -1331,7 +1331,7 @@
             }
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_60AED432F1254600A965E81B1D8B2640"
             {
-            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Debug\\VisualStudioComparisonTools.dll"
+            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Release\\VisualStudioComparisonTools.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_7B061BBEBEE14AD2B686162D0F4EA49A"
