@@ -76,6 +76,9 @@ Problems
           o Visual studio 2008:
                 + C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE
                 + C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE
+    * Visual studio 2010 support coming soon
+    * Problems with web site projects: Menu items not visible always
+    * Cannot compare files between projects
 
 
 Other used libraries
