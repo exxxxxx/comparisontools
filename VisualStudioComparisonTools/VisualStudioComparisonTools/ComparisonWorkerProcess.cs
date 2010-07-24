@@ -35,12 +35,15 @@ namespace VisualStudioComparisonTools
         private string comparisonFilePath1 = null;
         private string comparisonFilePath2 = null;
 
-        public ComparisonWorkerProcess(DTE2 applicationObject)
+        public ComparisonWorkerProcess(DTE2 applicationObject, ComparisonConfig config)
         {
             _applicationObject = applicationObject;
+            Config = config;
         }
 
         private const int LINE_TO_ARRAY_CONVERSION = 1;
+
+        public ComparisonConfig Config {get;set;}
 
         public TextSelection TextSelection
         {
@@ -69,17 +72,17 @@ namespace VisualStudioComparisonTools
         public string[] CreateTempFiles()
         {
             string workDirPath = null;
-            if (_applicationObject != null && _applicationObject.Solution != null && 
+            if (!Config.UseGlobalTempFolder && _applicationObject != null && _applicationObject.Solution != null && 
                 !string.IsNullOrEmpty(_applicationObject.Solution.FileName))
             {
                 workDirPath = Path.GetDirectoryName(_applicationObject.Solution.FileName);
             }
-            if (string.IsNullOrEmpty(workDirPath))
+            if (Config.UseGlobalTempFolder || string.IsNullOrEmpty(workDirPath))
             {
                 workDirPath = Path.GetTempPath();
             }
 
-            string workPath = workDirPath + Path.DirectorySeparatorChar + ".compare";
+            string workPath = workDirPath + Path.DirectorySeparatorChar + "_VisualStudioComparisonTools";
             if (!Directory.Exists(workPath))
             {
                 Directory.CreateDirectory(workPath);
@@ -157,14 +160,15 @@ namespace VisualStudioComparisonTools
 
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
                 proc.EnableRaisingEvents = false;
-                proc.StartInfo.FileName = "C:\\Program Files\\WinMerge\\WinMergeU.exe";
+                proc.StartInfo.FileName = Config.ComparisonToolPath;
+
                 string leftTitle = "";
                 string rightTitle = "";
                 if (!IsFirstFileReal())
                 {
                     if (log.IsDebugEnabled) log.Debug("Using temp file1 for comparison");
 
-                    leftTitle = "/dl \"Selection (" + Path.GetFileName(ComparisonFilePath1) + ")\"";
+                    leftTitle = Config.ComparisonToolSelectionTitle.Replace(ComparisonConfig.REPLACE_FILENAME, Path.GetFileName(ComparisonFilePath1));
                 }
                 else
                 {
@@ -174,14 +178,13 @@ namespace VisualStudioComparisonTools
                 {
                     if (log.IsDebugEnabled) log.Debug("Using temp file2 for comparison");
 
-                    rightTitle = "/wr /dr \"Clipboard (ReadOnly)\"";
+                    rightTitle = Config.ComparisonToolClipboardTitle;
                 }
                 else
                 {
                     if (log.IsDebugEnabled) log.Debug("Using real file2 for comparison");
                 }
-                proc.StartInfo.Arguments = "/ub " + leftTitle + " " + rightTitle + " \"" +
-                                           tempFiles[0] + "\" \"" + tempFiles[1] + "\"";
+                proc.StartInfo.Arguments = Config.ComparisonToolArguments.Replace(ComparisonConfig.REPLACE_SELECTION_TITLE, leftTitle).Replace(ComparisonConfig.REPLACE_CLIPBOARD_TITLE, rightTitle).Replace(ComparisonConfig.REPLACE_FILE_PARAM1, tempFiles[0]).Replace(ComparisonConfig.REPLACE_FILE_PARAM2, tempFiles[1]);
                 if (log.IsDebugEnabled) log.Debug("Using arguments: \"" + proc.StartInfo.Arguments + "\"");
 
                 proc.Start();
