@@ -18,3 +18,20 @@ http://winmerge.org/2.8/manual/CommandLine.html
 http://www.codeplex.com/ComparisonTools/
 
 http://localhost:8081/tfs07.codeplex.com/ComparisonTools
+
+
+Possibility to configure the add-in better
+-configuration file found from: Environment.SpecialFolder.CommonApplicationData \ VisualStudioComparisonTools\ config.xml
+ (In Vista and Windows 7: C:\ProgramData\Visual Studio Comparison Tools)
+-comparison tool exe path
+ * Doesn't anymore need to be WinMerge
+ * Default: C:\Program Files (x86)\WinMerge\WinMergeU.exe
+ * If not found from the default folder, tries to find it from both Program Files or Program Files (x86)
+-parameters to the comparison tool
+ * Tags which will be replaced by the add-in: 
+   [%File1%] First filename to compare
+   [%File2%] Second filename to compare
+   [%SELECTION_FILENAME%] (file name used in the title in winmerge, when comparing selection from a file instead of the full file
+   [%SELECTION_TITLE%] WinMerge's title arguments when comparing selection of a file
+   [%CLIPBOARD_TITLE%] WinMerge's title arguments when comparing clipboard
+-save temporary files to system temp folder or the project folder
