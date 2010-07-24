@@ -14,13 +14,23 @@ You should have received a copy of the GNU General Public License along
 with this program; if not, write to the Free Software Foundation, Inc.,
 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA.
 
+----------
+
+Visual Studio Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
+
 Prerequisites
-    * Requires WinMerge executable to be installed in "C:\Program Files\WinMerge\WinMergeU.exe"
+
+    * Requires a comparison util such as WinMerge
+    * Tested only with WinMerge. Write to the comments if you encounter problems setting up other tools!
+
 
 Installation
+
     * Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
 
+
 Usage
+
     * Compare to Clipboard has two different compare modes:
           o Clipboard to File comparison
                 + Right click text in the editor and select "Compare with clipboard". The active file will be saved.
@@ -35,24 +45,39 @@ Usage
     * Compare selected folders shows up when two directories are selected in the solution explorer.
           o The comparison is done totally in the merge tool.
 
-Other information
-    * VisualStudioComparisonTools will use solution's directory to store temporary files.
-          o If a solution isn't open, the system's temporary directory will be used.
-          o In normal usage the temporary files should be deleted.
+
+Configuration
+
+    * Configuration file can be found from Environment.SpecialFolder.CommonApplicationData \ VisualStudioComparisonTools\ config.xml
+          o (In Vista and Windows 7: C:\ProgramData\Visual Studio Comparison Tools)
+    * Comparison tool exe path
+          o Doesn't anymore need to be WinMerge
+          o Default: C:\Program Files (x86)\WinMerge\WinMergeU.exe
+          o If not found from the default folder, tries to find it from both Program Files or Program Files (x86)
+    * Parameters to the comparison tool (see example from the configuration file)
+          o Tags which will be replaced by the add-in:
+                + [%File1%] First filename to compare
+                + [%File2%] Second filename to compare
+                + [%SELECTION_FILENAME%] (file name used in the title in winmerge, when comparing selection from a file instead of the full file
+                + [%SELECTION_TITLE%] WinMerge's title arguments when comparing selection of a file
+                + [%CLIPBOARD_TITLE%] WinMerge's title arguments when comparing clipboard
+    * VisualStudioComparisonTools will use system temp directory to store temporary files, but it can be configured to store them solution's directory under _VisualStudioComparisonTools folder
+
 
 Problems
+
     * If the "Compare to Clipboard" text doesn't appear in the right click context menu, try the following:
           o Go to the command prompt. Go to the location of devenv.exe (for example "C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE")
           o Write "devenv.exe /resetaddin VisualStudioComparisonTools.Connect" and press enter.
-    * If you encounter any problems, copy the file "VisualStudioComparisonTools.dll.log4net" from the application directory to the location of devenv.exe.
+    * If you encounter any problems, copy the file "VisualStudioComparisonTools.dll.log4net" and log4net.dll from the application directory to the location of devenv.exe. A VisualStudioComparisonTools-log.txt file will be created.
           o Visual Studio 2005
                 + C:\Program Files\Microsoft Visual Studio 8\Common7\IDE
+                + C:\Program Files (x86)\Microsoft Visual Studio 8\Common7\IDE
           o Visual studio 2008:
                 + C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE
+                + C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE
+
 
 Other used libraries
-    * log4net - http://logging.apache.org/log4net/index.html
 
-Known bugs
-    * Always after opening visual studio, the right click menu has both Compare to clipboard and Compare files in the context menu.
-          o If two files are selected, the compare to clipboard will not do anything.
+    * log4net - http://logging.apache.org/log4net/index.html
