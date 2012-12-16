@@ -129,10 +129,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="COPYING" />
-    <Content Include="testing\VisualStudioComparisonTools - For Testing.AddIn" />
+    <None Include="COPYING">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <Content Include="testing\VisualStudioComparisonTools - For Testing.AddIn">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="VisualStudioComparisonTools.AddIn">
       <SubType>Designer</SubType>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Jutut.txt" />
     <Content Include="log4net.LICENSE.txt" />
