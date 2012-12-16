@@ -1,13 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
 <Extensibility xmlns="http://schemas.microsoft.com/AutomationExtensibility">
-	<HostApplication>
-		<Name>Microsoft Visual Studio Macros</Name>
-		<Version>9.0</Version>
-	</HostApplication>
-	<HostApplication>
-		<Name>Microsoft Visual Studio</Name>
-		<Version>9.0</Version>
-	</HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio Macros</Name>
+    <Version>10.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio Macros</Name>
+    <Version>9.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio</Name>
+    <Version>10.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio</Name>
+    <Version>9.0</Version>
+  </HostApplication>
 	<Addin>
 		<FriendlyName>Visual Studio Comparison Tools</FriendlyName>
 		<Description>Compare clipboard to files, files to files and folders to other folders</Description>
