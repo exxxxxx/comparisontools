@@ -2,6 +2,10 @@
 <Extensibility xmlns="http://schemas.microsoft.com/AutomationExtensibility">
   <HostApplication>
     <Name>Microsoft Visual Studio Macros</Name>
+    <Version>12.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio Macros</Name>
     <Version>11.0</Version>
   </HostApplication>
   <HostApplication>
@@ -11,6 +15,10 @@
   <HostApplication>
     <Name>Microsoft Visual Studio Macros</Name>
     <Version>9.0</Version>
+  </HostApplication>
+  <HostApplication>
+    <Name>Microsoft Visual Studio</Name>
+    <Version>12.0</Version>
   </HostApplication>
   <HostApplication>
     <Name>Microsoft Visual Studio</Name>
