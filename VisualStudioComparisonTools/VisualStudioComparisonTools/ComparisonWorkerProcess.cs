@@ -180,6 +180,8 @@ namespace VisualStudioComparisonTools
                 {
                     originalFileText = File.ReadAllLines(ComparisonFilePath1);
                     originalSelection = File.ReadAllText(tempFiles[0]);
+
+                    log.Debug("First file not \"real\": originalFileText=" + ComparisonFilePath1 + " tempFiles[0]=" + tempFiles[0]);
                 }
 
                 System.Diagnostics.Process proc = new System.Diagnostics.Process();
@@ -228,9 +230,9 @@ namespace VisualStudioComparisonTools
                 if (!IsFirstFileReal())
                 {
                     int topLine = TextSelection.TopPoint.Line;
-                    int topColumn = TextSelection.TopPoint.DisplayColumn;
+                    int topColumn = TextSelection.TopPoint.LineCharOffset;
                     int bottomLine = TextSelection.BottomPoint.Line;
-                    int bottomColumn = TextSelection.BottomPoint.DisplayColumn;
+                    int bottomColumn = TextSelection.BottomPoint.LineCharOffset;
 
                     string fileBeginning = GetBeginningOfFile(originalFileText, topLine, topColumn);
                     string resultSelection = File.ReadAllText(tempFiles[0]);
@@ -281,8 +283,8 @@ namespace VisualStudioComparisonTools
 
         public static string GetBeginningOfFile(string[] originalFileText, int topLine, int topColumn)
         {
-            log.Info("originalFileText Length=" + originalFileText + " topLine=" + topLine + " topColumn=" + topColumn);
-
+            log.Info("GetBeginningOfFile: originalFileText Length=" + originalFileText.Length + " topLine=" + topLine + " topColumn=" + topColumn);
+            log.Debug("GetBeginningOfFile: originalFileText=" + string.Join("" + Environment.NewLine, originalFileText));
             StringBuilder buffer = new StringBuilder();
             for (int i = 0; i < topLine - 1; i++)
             {
@@ -297,14 +299,19 @@ namespace VisualStudioComparisonTools
 
         public static string GetEndingOfFile(string[] originalFileText, int bottomLine, int bottomColumn)
         {
-            log.Info("originalFileText Length=" + originalFileText + " bottomLine=" + bottomLine + " bottomColumn=" + bottomColumn);
+            log.Info("GetEndingOfFile: originalFileText Length=" + originalFileText.Length + " bottomLine=" + bottomLine + " bottomColumn=" + bottomColumn);
+            log.Debug("GetEndingOfFile: originalFileText=" + string.Join("" + Environment.NewLine, originalFileText));
 
             StringBuilder buffer = new StringBuilder();
             if (bottomLine <= originalFileText.Length)
             {
-                buffer.Append(originalFileText[bottomLine - LINE_TO_ARRAY_CONVERSION].Substring(bottomColumn - LINE_TO_ARRAY_CONVERSION));
+                log.Debug("GetEndingOfFile originalFileText.Length=" + originalFileText.Length + " index=" + (bottomLine - LINE_TO_ARRAY_CONVERSION) + " startindex=" + (bottomColumn - LINE_TO_ARRAY_CONVERSION));
+                string substring = originalFileText[bottomLine - LINE_TO_ARRAY_CONVERSION].Substring(bottomColumn - LINE_TO_ARRAY_CONVERSION);
+                log.Debug("GetEndingOfFile substring=" + substring);
+                buffer.Append(substring);
                 for (int i = bottomLine; i < originalFileText.Length; i++)
                 {
+                    log.Debug("GetEndingOfFile originalFileText.Length=" + originalFileText.Length + " index=" + (bottomLine - LINE_TO_ARRAY_CONVERSION) + " startindex=" + (bottomColumn - LINE_TO_ARRAY_CONVERSION) + " substring=" + originalFileText[i]);
                     buffer.Append(Environment.NewLine + originalFileText[i]);
                 }
             }
