@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using EnvDTE;
 using EnvDTE80;
@@ -71,24 +72,14 @@ namespace VisualStudioComparisonTools
 
         public string[] CreateTempFiles()
         {
-            string workDirPath = null;
-            if (!Config.UseGlobalTempFolder && _applicationObject != null && _applicationObject.Solution != null && 
-                !string.IsNullOrEmpty(_applicationObject.Solution.FileName))
+            string workDirPath = GetWorkingDirectoryPath();
+
+            DirectoryInfo di = new DirectoryInfo(workDirPath);
+            if (!di.Exists)
             {
-                workDirPath = Path.GetDirectoryName(_applicationObject.Solution.FileName);
-            }
-            if (Config.UseGlobalTempFolder || string.IsNullOrEmpty(workDirPath))
-            {
-                workDirPath = Path.GetTempPath();
+                di.Create();
             }
 
-            string workPath = workDirPath + Path.DirectorySeparatorChar + "_VisualStudioComparisonTools";
-            if (!Directory.Exists(workPath))
-            {
-                Directory.CreateDirectory(workPath);
-            }
-
-            int index = 0;
             string selectionFile;
             if (IsFirstFileReal())
             {
@@ -96,16 +87,8 @@ namespace VisualStudioComparisonTools
             }
             else
             {
-                do
-                {
-                    selectionFile = workPath + Path.DirectorySeparatorChar + "endresult_" + index;
-                    index++;
-                } while (File.Exists(selectionFile));
-
-                using (StreamWriter sw = new StreamWriter(selectionFile))
-                {
-                    sw.Write(textSelection.Text);
-                }
+                selectionFile = workDirPath + Path.DirectorySeparatorChar + "endresult_" + Guid.NewGuid() + ".txt";
+                File.WriteAllText(selectionFile, textSelection.Text);
             }
 
             string clipboardFile;
@@ -115,19 +98,51 @@ namespace VisualStudioComparisonTools
             }
             else
             {
-                do
-                {
-                    clipboardFile = workPath + Path.DirectorySeparatorChar + "clipboard_" + index;
-                    index++;
-                } while (File.Exists(clipboardFile));
-
-                using (StreamWriter sw = new StreamWriter(clipboardFile))
-                {
-                    sw.Write(clipboardText);
-                }
+                clipboardFile = workDirPath + Path.DirectorySeparatorChar + "clipboard_" + Guid.NewGuid() + ".txt";
+                File.WriteAllText(clipboardFile, clipboardText);
             }
 
             return new [] { selectionFile, clipboardFile };
+        }
+
+        public void ExecuteCleanup()
+        {
+            string workDirPath = GetWorkingDirectoryPath();
+            
+            log.Info("Cleaning working directory \"" + workDirPath + "\"");
+
+            DirectoryInfo di = new DirectoryInfo(workDirPath);
+            if (di.Exists)
+            {
+                List<FileInfo> fileInfos;
+                fileInfos = di.GetFiles("endresult_*").Where(fi => fi.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-7)).ToList();
+                fileInfos.ForEach(fi =>
+                {
+                    log.Info("Removing \"" + fi.FullName + "\"");
+                    fi.Delete();
+                });
+                fileInfos = di.GetFiles("clipboard_*").Where(fi => fi.LastWriteTimeUtc < DateTime.UtcNow.AddDays(-7)).ToList();
+                fileInfos.ForEach(fi =>
+                {
+                    log.Info("Removing \"" + fi.FullName + "\"");
+                    fi.Delete();
+                });
+            }
+        }
+
+        private string GetWorkingDirectoryPath()
+        {
+            string workDirPath = "";
+            if (!Config.UseGlobalTempFolder && _applicationObject != null && _applicationObject.Solution != null &&
+                !string.IsNullOrEmpty(_applicationObject.Solution.FileName))
+            {
+                workDirPath = Path.GetDirectoryName(_applicationObject.Solution.FileName);
+            }
+            if (Config.UseGlobalTempFolder || string.IsNullOrEmpty(workDirPath))
+            {
+                workDirPath = Path.GetTempPath();
+            }
+            return workDirPath + Path.DirectorySeparatorChar + "_VisualStudioComparisonTools";;
         }
 
         private bool IsFirstFileReal()
@@ -142,13 +157,22 @@ namespace VisualStudioComparisonTools
 
         public void OpenComparisonProcess()
         {
-            if (log.IsInfoEnabled) log.Info("Start");
+            log.Info("Start");
+
+            try
+            {
+                ExecuteCleanup();
+            }
+            catch (Exception ex)
+            {
+                log.Error(ex);
+            }
 
             string[] tempFiles = null;
             try
             {
                 tempFiles = CreateTempFiles();
-                if (log.IsDebugEnabled) log.Debug("Read temp files. File1=" + tempFiles[0] + " file2=" + tempFiles[1]);
+                log.Debug("Read temp files. File1=" + tempFiles[0] + " file2=" + tempFiles[1]);
 
                 string[] originalFileText = null;
                 string originalSelection = null;
@@ -166,31 +190,40 @@ namespace VisualStudioComparisonTools
                 string rightTitle = "";
                 if (!IsFirstFileReal())
                 {
-                    if (log.IsDebugEnabled) log.Debug("Using temp file1 for comparison");
+                    log.Debug("Using temp file1 for comparison");
 
                     leftTitle = Config.ComparisonToolSelectionTitle.Replace(ComparisonConfig.REPLACE_FILENAME, Path.GetFileName(ComparisonFilePath1));
                 }
                 else
                 {
-                    if (log.IsDebugEnabled) log.Debug("Using real file1 for comparison");
+                    log.Debug("Using real file1 for comparison");
                 }
                 if (!IsSecondFileReal())
                 {
-                    if (log.IsDebugEnabled) log.Debug("Using temp file2 for comparison");
+                    log.Debug("Using temp file2 for comparison");
 
                     rightTitle = Config.ComparisonToolClipboardTitle;
                 }
                 else
                 {
-                    if (log.IsDebugEnabled) log.Debug("Using real file2 for comparison");
+                    log.Debug("Using real file2 for comparison");
                 }
+                
                 proc.StartInfo.Arguments = Config.ComparisonToolArguments.Replace(ComparisonConfig.REPLACE_SELECTION_TITLE, leftTitle).Replace(ComparisonConfig.REPLACE_CLIPBOARD_TITLE, rightTitle).Replace(ComparisonConfig.REPLACE_FILE_PARAM1, tempFiles[0]).Replace(ComparisonConfig.REPLACE_FILE_PARAM2, tempFiles[1]);
-                if (log.IsDebugEnabled) log.Debug("Using arguments: \"" + proc.StartInfo.Arguments + "\"");
+                log.Debug("Using arguments: \"" + proc.StartInfo.Arguments + "\"");
 
-                proc.Start();
+                if (File.Exists(tempFiles[0]) && File.Exists(tempFiles[1]) ||
+                    Directory.Exists(tempFiles[0]) && Directory.Exists(tempFiles[1]))
+                {
+                    proc.Start();
 
-                if (log.IsInfoEnabled) log.Info("Waiting for mergetool exit");
-                proc.WaitForExit();
+                    log.Info("Waiting for mergetool exit");
+                    proc.WaitForExit();
+                }
+                else
+                {
+                    log.Fatal("Could not find files to compare!");
+                }
 
                 if (!IsFirstFileReal())
                 {
@@ -205,7 +238,7 @@ namespace VisualStudioComparisonTools
 
                     if (originalSelection != null && !originalSelection.Equals(resultSelection))
                     {
-                        if (log.IsInfoEnabled) log.Info("Changes found");
+                        log.Info("Changes found");
 
                         StringBuilder buffer = new StringBuilder();
                         buffer.Append(fileBeginning);
@@ -214,41 +247,41 @@ namespace VisualStudioComparisonTools
 
                         File.WriteAllText(ComparisonFilePath1, buffer.ToString());
 
-                        if (log.IsInfoEnabled) log.Info("Changes written");
+                        log.Info("Changes written");
                     }
                     else
                     {
-                        if (log.IsInfoEnabled) log.Info("No changes done in selection");
+                        log.Info("No changes done in selection");
                     }
                 }
             }
             catch (Exception e)
             {
+                log.Error(e);
+
                 if (tempFiles != null)
                 {
                     if (!IsFirstFileReal())
                     {
-                        if (log.IsInfoEnabled) log.Info("Deleting temporary file for selection");
+                        log.Info("Deleting temporary file for selection");
 
                         File.Delete(tempFiles[0]);
                     }
                     if (!IsSecondFileReal())
                     {
-                        if (log.IsInfoEnabled) log.Info("Deleting temporary file for clipboard");
+                        log.Info("Deleting temporary file for clipboard");
 
                         File.Delete(tempFiles[1]);
                     }
                 }
-
-                if (log.IsErrorEnabled) log.Error(e);
                 Connect.ShowThreadExceptionDialog(e);
             }
-            if (log.IsInfoEnabled) log.Info("End");
+            log.Info("End");
         }
 
         public static string GetBeginningOfFile(string[] originalFileText, int topLine, int topColumn)
         {
-            if (log.IsInfoEnabled) log.Info("originalFileText Length=" + originalFileText + " topLine=" + topLine + " topColumn=" + topColumn);
+            log.Info("originalFileText Length=" + originalFileText + " topLine=" + topLine + " topColumn=" + topColumn);
 
             StringBuilder buffer = new StringBuilder();
             for (int i = 0; i < topLine - 1; i++)
@@ -257,14 +290,14 @@ namespace VisualStudioComparisonTools
             }
             buffer.Append(originalFileText[topLine - LINE_TO_ARRAY_CONVERSION].Substring(0, topColumn - LINE_TO_ARRAY_CONVERSION));
 
-            if (log.IsDebugEnabled) log.Debug(buffer.ToString());
+            log.Debug(buffer.ToString());
 
             return buffer.ToString();
         }
 
         public static string GetEndingOfFile(string[] originalFileText, int bottomLine, int bottomColumn)
         {
-            if (log.IsInfoEnabled) log.Info("originalFileText Length=" + originalFileText + " bottomLine=" + bottomLine + " bottomColumn=" + bottomColumn);
+            log.Info("originalFileText Length=" + originalFileText + " bottomLine=" + bottomLine + " bottomColumn=" + bottomColumn);
 
             StringBuilder buffer = new StringBuilder();
             if (bottomLine <= originalFileText.Length)
@@ -276,7 +309,7 @@ namespace VisualStudioComparisonTools
                 }
             }
 
-            if (log.IsDebugEnabled) log.Debug(buffer.ToString());
+            log.Debug(buffer.ToString());
 
             return buffer.ToString();
         }
