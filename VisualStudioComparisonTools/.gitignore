@@ -3,3 +3,5 @@
 /UpgradeLog*.XML
 /*.5.1.ReSharper.user
 /*.suo
+/_VisualStudioComparisonTools/
+/_VisualStudioComparisonToolsSetup/

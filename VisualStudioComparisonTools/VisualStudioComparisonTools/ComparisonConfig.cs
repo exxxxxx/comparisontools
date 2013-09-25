@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Data;
 using System.IO;
+using Microsoft.Win32;
 
 namespace VisualStudioComparisonTools
 {
@@ -46,10 +47,23 @@ namespace VisualStudioComparisonTools
                     ComparisonToolPath = config.Tables["Configuration"].Rows[0]["ComparisonToolPath"].ToString();
                     if (!File.Exists(ComparisonToolPath))
                     {
-                        ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files (x86)\\", ":\\Program Files\\");
+                        var winMergeKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\WinMergeU.exe");
+                        if (winMergeKey != null)
+                        {
+                            var path = winMergeKey.GetValue("") as string;
+                            if (path != null && File.Exists(path))
+                            {
+                                ComparisonToolPath = path;
+                            }
+                        }
+
                         if (!File.Exists(ComparisonToolPath))
                         {
-                            ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
+                            ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files (x86)\\", ":\\Program Files\\");
+                            if (!File.Exists(ComparisonToolPath))
+                            {
+                                ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
+                            }
                         }
                     }
                 }

@@ -236,7 +236,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.21022                           "
+                "FrameworkVersion" = "8:3.5.21022                              "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -671,15 +671,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Visual Studio Comparison Tools"
-        "ProductCode" = "8:{186B9F29-2D91-4910-AA25-33FAC2F18A06}"
-        "PackageCode" = "8:{FC8772F9-D7E7-40E8-94A8-509D1B221A6E}"
+        "ProductCode" = "8:{708020E9-C66F-40DE-9148-19EA4882981F}"
+        "PackageCode" = "8:{3EF59ADF-CA73-423A-9792-6102B7F0B360}"
         "UpgradeCode" = "8:{6C0E0EA0-6AED-447E-98FA-1ABD5ECFEBA0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.2.20"
+        "ProductVersion" = "8:2.2.23"
         "Manufacturer" = "8:Mikko Halttunen"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -1193,7 +1193,7 @@
         {
             "{5259A561-127C-4D43-A0A1-72F10C7B3BF8}:_60AED432F1254600A965E81B1D8B2640"
             {
-            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Debug\\VisualStudioComparisonTools.dll"
+            "SourcePath" = "8:..\\VisualStudioComparisonTools\\obj\\Release\\VisualStudioComparisonTools.dll"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_4611F0DD796F43B288AC6684D0D16387"

@@ -188,6 +188,12 @@ namespace VisualStudioComparisonTools
                 proc.EnableRaisingEvents = false;
                 proc.StartInfo.FileName = Config.ComparisonToolPath;
 
+                if (!File.Exists(Config.ComparisonToolPath))
+                {
+                    log.Fatal("Could not find the comparison tool from path: " + Config.ComparisonToolPath);
+                    throw new Exception("Could not find the comparison tool from path: \"" + Config.ComparisonToolPath + "\" \nWinMerge can be downloaded from \"http://winmerge.org\"!");
+                }
+
                 string leftTitle = "";
                 string rightTitle = "";
                 if (!IsFirstFileReal())
