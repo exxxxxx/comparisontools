@@ -112,19 +112,7 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_E362E38C88F642C19F22AB74F41BBE33"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_D73E0972B785A276F207D93DA868806F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_62B306174354460C10F6EAB629DB1F95"
+        "OwnerKey" = "8:_3327A86A5562796715A1E89380F35EA2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -136,7 +124,19 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3327A86A5562796715A1E89380F35EA2"
+        "OwnerKey" = "8:_62B306174354460C10F6EAB629DB1F95"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D73E0972B785A276F207D93DA868806F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E362E38C88F642C19F22AB74F41BBE33"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -236,7 +236,7 @@
                 {
                 "Name" = "8:.NET Framework"
                 "Message" = "8:[VSDNETMSG]"
-                "FrameworkVersion" = "8:3.5.21022                              "
+                "FrameworkVersion" = "8:3.5.21022                                   "
                 "AllowLaterVersions" = "11:FALSE"
                 "InstallUrl" = "8:http://go.microsoft.com/fwlink/?LinkId=76617"
                 }
@@ -302,11 +302,6 @@
             "AssemblyAsmDisplayName" = "8:log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821"
                 "ScatterAssemblies"
                 {
-                    "_3327A86A5562796715A1E89380F35EA2"
-                    {
-                    "Name" = "8:log4net.dll"
-                    "Attributes" = "3:512"
-                    }
                 }
             "SourcePath" = "8:log4net.dll"
             "TargetName" = "8:"
@@ -671,15 +666,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Visual Studio Comparison Tools"
-        "ProductCode" = "8:{708020E9-C66F-40DE-9148-19EA4882981F}"
-        "PackageCode" = "8:{3EF59ADF-CA73-423A-9792-6102B7F0B360}"
+        "ProductCode" = "8:{0C1C1267-19B9-45CE-AE6C-1AE77A19F9C2}"
+        "PackageCode" = "8:{B8575F55-0F88-490F-A0EA-A901C0D43BB4}"
         "UpgradeCode" = "8:{6C0E0EA0-6AED-447E-98FA-1ABD5ECFEBA0}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:TRUE"
-        "ProductVersion" = "8:2.2.23"
+        "ProductVersion" = "8:2.3.3"
         "Manufacturer" = "8:Mikko Halttunen"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"

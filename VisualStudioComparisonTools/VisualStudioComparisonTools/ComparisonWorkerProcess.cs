@@ -193,6 +193,10 @@ namespace VisualStudioComparisonTools
                     log.Fatal("Could not find the comparison tool from path: " + Config.ComparisonToolPath);
                     throw new Exception("Could not find the comparison tool from path: \"" + Config.ComparisonToolPath + "\" \nWinMerge can be downloaded from \"http://winmerge.org\"!");
                 }
+                else
+                {
+                    log.Debug("Found comparison tool from path: \"" + Config.ComparisonToolPath);
+                }
 
                 string leftTitle = "";
                 string rightTitle = "";

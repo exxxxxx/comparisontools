@@ -9,6 +9,8 @@ namespace VisualStudioComparisonTools
 {
     public class ComparisonConfig
     {
+        private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
+        
         public const string REPLACE_FILENAME = "[%SELECTION_FILENAME%]";
         public const string REPLACE_FILE_PARAM1 = "[%File1%]";
         public const string REPLACE_FILE_PARAM2 = "[%File2%]";
@@ -29,43 +31,57 @@ namespace VisualStudioComparisonTools
 
         public void Load()
         {
+            log.Debug("Loading config");
+
             if (!File.Exists(configFile))
             {
+                log.Debug("Config file did not exist. Creating new.");
                 Save();
             }
             DataSet config = new DataSet();
             if (File.Exists(configFile))
             {
+                log.Debug("Found config file. Reading xml");
                 config.ReadXml(configFile);
             }
             if (config.Tables["Configuration"] != null &&
                 config.Tables["Configuration"].Rows.Count > 0)
             {
+                log.Debug("Configuration table found");
                 if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolPath") >= 0 && 
                     config.Tables["Configuration"].Rows[0]["ComparisonToolPath"] != null)
                 {
+                    log.Debug("Comparisontoolpath found");
                     ComparisonToolPath = config.Tables["Configuration"].Rows[0]["ComparisonToolPath"].ToString();
+                    log.Debug("Comparisontoolpath is " + ComparisonToolPath);
                     if (!File.Exists(ComparisonToolPath))
                     {
+                        log.Debug("The file in comparison toolpath not found! Checking if winmerge exists.");
                         var winMergeKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\WinMergeU.exe");
                         if (winMergeKey != null)
                         {
+                            log.Debug("Winmerge found from registry");
                             var path = winMergeKey.GetValue("") as string;
                             if (path != null && File.Exists(path))
                             {
+                                log.Debug("Winmerge exe path found from file system. Using that");
                                 ComparisonToolPath = path;
                             }
                         }
 
                         if (!File.Exists(ComparisonToolPath))
                         {
+                            log.Debug("Still could not find comparison toolpath exe from file system. Try to change program files x86 to no x86");
                             ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files (x86)\\", ":\\Program Files\\");
                             if (!File.Exists(ComparisonToolPath))
                             {
+                                log.Debug("Nope. Try the other way around");
                                 ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
                             }
                         }
                     }
+
+                    log.Debug("Resulting comparisontoolpath is " + ComparisonToolPath);
                 }
                 if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolArguments") >= 0 && 
                     config.Tables["Configuration"].Rows[0]["ComparisonToolArguments"] != null)
@@ -89,6 +105,7 @@ namespace VisualStudioComparisonTools
                 }
             }
 
+            log.Debug("Saving config ");
             Save();
         }
 
