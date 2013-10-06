@@ -21,7 +21,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using EnvDTE;
-using EnvDTE80;
 using log4net;
 
 namespace VisualStudioComparisonTools
@@ -30,13 +29,13 @@ namespace VisualStudioComparisonTools
     {
         private static readonly log4net.ILog log = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-        private DTE2 _applicationObject;
+        private DTE _applicationObject;
         private TextSelection textSelection = null;
         private string clipboardText = null;
         private string comparisonFilePath1 = null;
         private string comparisonFilePath2 = null;
 
-        public ComparisonWorkerProcess(DTE2 applicationObject, ComparisonConfig config)
+        public ComparisonWorkerProcess(DTE applicationObject, ComparisonConfig config)
         {
             _applicationObject = applicationObject;
             Config = config;
