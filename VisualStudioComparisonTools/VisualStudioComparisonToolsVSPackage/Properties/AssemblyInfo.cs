@@ -7,11 +7,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("VSComparisonTools")]
+[assembly: AssemblyTitle("Visual Studio Comparison Tools")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Mikko Halttunen")]
-[assembly: AssemblyProduct("VSComparisonTools")]
+[assembly: AssemblyProduct("Visual Studio Comparison Tools")]
 [assembly: AssemblyCopyright("")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]   
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("1.0.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
 
-[assembly: InternalsVisibleTo("VisualStudioComparisonToolsVSPackage_IntegrationTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001005f165cbf137cb0e4fc7f996568e709fbca3ccdfd85d8d9bc8d7c2b4c2b4efac232b69c6c51b3e5eacb00eb2310726bd54a80844a1b688fd798279dcdeea1a09876b0840dc4561402651c28a8e4087b491cd262916acec79ce8553afb8e0c3c7565a572e518e268e9f27d77db3c8ae60bda409c812df2f2390f5a0757e779afa7")]
-[assembly: InternalsVisibleTo("VisualStudioComparisonToolsVSPackage_UnitTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001005f165cbf137cb0e4fc7f996568e709fbca3ccdfd85d8d9bc8d7c2b4c2b4efac232b69c6c51b3e5eacb00eb2310726bd54a80844a1b688fd798279dcdeea1a09876b0840dc4561402651c28a8e4087b491cd262916acec79ce8553afb8e0c3c7565a572e518e268e9f27d77db3c8ae60bda409c812df2f2390f5a0757e779afa7")]
+[assembly: InternalsVisibleTo("VisualStudioComparisonToolsVSPackage_IntegrationTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001003b6889768def069925e5fd8c417f46e8f1dd7e3f46c2833bd6df581948d701228a48d4fbe67b323bff8a17e36f8c1a857d3a33000a703cca1bd57e4137cb6d2b8ea0634b5cbdc25f51d87612f443764b8cfb37381834a8300d7475fe7f189993c82721f96a0a02d3d1b78c70c47d772a4734acfafe2cf221c54bbfbdb9da9efc")]
+[assembly: InternalsVisibleTo("VisualStudioComparisonToolsVSPackage_UnitTests, PublicKey=00240000048000009400000006020000002400005253413100040000010001003b6889768def069925e5fd8c417f46e8f1dd7e3f46c2833bd6df581948d701228a48d4fbe67b323bff8a17e36f8c1a857d3a33000a703cca1bd57e4137cb6d2b8ea0634b5cbdc25f51d87612f443764b8cfb37381834a8300d7475fe7f189993c82721f96a0a02d3d1b78c70c47d772a4734acfafe2cf221c54bbfbdb9da9efc")]

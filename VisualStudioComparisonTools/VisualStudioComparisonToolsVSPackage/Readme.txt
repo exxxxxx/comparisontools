@@ -1,6 +1,6 @@
 ﻿VisualStudioComparisonTools
 
-Copyright 2008 Mikko Halttunen
+Copyright 2013 Mikko Halttunen
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; version 2 of the License.
@@ -16,15 +16,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 ----------
 
-Visual Studio Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
+Visual Studio Comparison Tools is an extension for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
 
 Prerequisites
 
     * Requires a comparison util such as WinMerge
-    * Tested only with WinMerge. Write to the comments if you encounter problems setting up other tools!
+    * Tested with WinMerge and Beyond Compare 3. Write to the comments if you encounter problems setting up other tools!
 
 
-Installation
+Installation (of the add-in version)
 
     * Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
 
@@ -64,7 +64,7 @@ Configuration
     * VisualStudioComparisonTools will use system temp directory to store temporary files, but it can be configured to store them solution's directory under _VisualStudioComparisonTools folder
 
 
-Problems
+Problems (Add-in version)
 
     * If the "Compare to Clipboard" text doesn't appear in the right click context menu, try the following:
           o Go to the command prompt. Go to the location of devenv.exe (for example "C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE")
@@ -76,8 +76,6 @@ Problems
           o Visual studio 2008:
                 + C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE
                 + C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE
-    * Visual studio 2010 support coming soon
-    * Problems with web site projects: Menu items not visible always
     * Cannot compare files between projects
 
 
