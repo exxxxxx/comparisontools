@@ -1,15 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.20827.3
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 2012
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudioComparisonTools", "VisualStudioComparisonTools\VisualStudioComparisonTools.csproj", "{9DAFAE92-BD43-4888-A87C-022404817FA2}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "VisualStudioComparisonToolsSetup", "VisualStudioComparisonToolsSetup\VisualStudioComparisonToolsSetup.vdproj", "{13CE2A03-46B2-4D2C-BEEE-AE6D40F12C17}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudioComparisonToolsVSPackage", "VisualStudioComparisonToolsVSPackage\VisualStudioComparisonToolsVSPackage.csproj", "{06D97A72-FD7B-4527-9C4E-AC91FC15E965}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudioComparisonTools2", "VisualStudioComparisonTools2\VisualStudioComparisonTools2.csproj", "{D03873AE-44DD-4BAE-8A5B-FD3611DFE80D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VisualStudioComparisonToolsVSPackage", "VisualStudioComparisonToolsVSPackage\VisualStudioComparisonToolsVSPackage.csproj", "{329D5174-D261-4D31-B097-345169E0896A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,14 +21,10 @@ Global
 		{13CE2A03-46B2-4D2C-BEEE-AE6D40F12C17}.Debug|Any CPU.Build.0 = Debug
 		{13CE2A03-46B2-4D2C-BEEE-AE6D40F12C17}.Release|Any CPU.ActiveCfg = Release
 		{13CE2A03-46B2-4D2C-BEEE-AE6D40F12C17}.Release|Any CPU.Build.0 = Release
-		{06D97A72-FD7B-4527-9C4E-AC91FC15E965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{06D97A72-FD7B-4527-9C4E-AC91FC15E965}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{06D97A72-FD7B-4527-9C4E-AC91FC15E965}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{06D97A72-FD7B-4527-9C4E-AC91FC15E965}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D03873AE-44DD-4BAE-8A5B-FD3611DFE80D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D03873AE-44DD-4BAE-8A5B-FD3611DFE80D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D03873AE-44DD-4BAE-8A5B-FD3611DFE80D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D03873AE-44DD-4BAE-8A5B-FD3611DFE80D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{329D5174-D261-4D31-B097-345169E0896A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{329D5174-D261-4D31-B097-345169E0896A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{329D5174-D261-4D31-B097-345169E0896A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{329D5174-D261-4D31-B097-345169E0896A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
