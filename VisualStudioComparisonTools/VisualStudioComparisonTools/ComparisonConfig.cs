@@ -16,8 +16,10 @@ namespace VisualStudioComparisonTools
         public const string REPLACE_FILE_PARAM2 = "[%File2%]";
         public const string REPLACE_SELECTION_TITLE = "[%SELECTION_TITLE%]";
         public const string REPLACE_CLIPBOARD_TITLE = "[%CLIPBOARD_TITLE%]";
+        public const string ComparisonToolPath_BCOMP = "C:\\Program Files (x86)\\Beyond Compare 3\\BComp.exe";
+        public const string ComparisonToolPath_WinMerge = "C:\\Program Files (x86)\\WinMerge\\WinMergeU.exe";
 
-        public string ComparisonToolPath = "C:\\Program Files (x86)\\WinMerge\\WinMergeU.exe";
+        public string ComparisonToolPath = ComparisonToolPath_BCOMP;
         public string ComparisonToolArguments = "/ub " + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + " \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\"";
         public string ComparisonToolSelectionTitle = "/dl \"Selection (" + REPLACE_FILENAME + ")\"";
         public string ComparisonToolClipboardTitle = "/wr /dr \"Clipboard (ReadOnly)\"";
@@ -25,7 +27,7 @@ namespace VisualStudioComparisonTools
         public bool ShowInVS2012 = false;
         public bool ShowInVS2013 = false;
 
-        private string configFile = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + Path.DirectorySeparatorChar + "Visual Studio Comparison Tools" + Path.DirectorySeparatorChar + "config.xml";
+        private string configFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar + "Visual Studio Comparison Tools" + Path.DirectorySeparatorChar + "config.xml";
 
         public ComparisonConfig()
         {
@@ -58,19 +60,7 @@ namespace VisualStudioComparisonTools
                     log.Debug("Comparisontoolpath is " + ComparisonToolPath);
                     if (!File.Exists(ComparisonToolPath))
                     {
-                        log.Debug("The file in comparison toolpath not found! Checking if winmerge exists.");
-                        var winMergeKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\WinMergeU.exe");
-                        if (winMergeKey != null)
-                        {
-                            log.Debug("Winmerge found from registry");
-                            var path = winMergeKey.GetValue("") as string;
-                            if (path != null && File.Exists(path))
-                            {
-                                log.Debug("Winmerge exe path found from file system. Using that");
-                                ComparisonToolPath = path;
-                            }
-                        }
-
+                        ComparisonToolPath = ComparisonToolPath_BCOMP;
                         if (!File.Exists(ComparisonToolPath))
                         {
                             log.Debug("Still could not find comparison toolpath exe from file system. Try to change program files x86 to no x86");
@@ -79,6 +69,35 @@ namespace VisualStudioComparisonTools
                             {
                                 log.Debug("Nope. Try the other way around");
                                 ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
+                            }
+                        }
+
+                        if (!File.Exists(ComparisonToolPath))
+                        {
+                            ComparisonToolPath = ComparisonToolPath_WinMerge;
+
+                            log.Debug("The file in comparison toolpath not found! Checking if winmerge exists.");
+                            var winMergeKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\WinMergeU.exe");
+                            if (winMergeKey != null)
+                            {
+                                log.Debug("Winmerge found from registry");
+                                var path = winMergeKey.GetValue("") as string;
+                                if (path != null && File.Exists(path))
+                                {
+                                    log.Debug("Winmerge exe path found from file system. Using that");
+                                    ComparisonToolPath = path;
+                                }
+                            }
+
+                            if (!File.Exists(ComparisonToolPath))
+                            {
+                                log.Debug("Still could not find comparison toolpath exe from file system. Try to change program files x86 to no x86");
+                                ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files (x86)\\", ":\\Program Files\\");
+                                if (!File.Exists(ComparisonToolPath))
+                                {
+                                    log.Debug("Nope. Try the other way around");
+                                    ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
+                                }
                             }
                         }
                     }
