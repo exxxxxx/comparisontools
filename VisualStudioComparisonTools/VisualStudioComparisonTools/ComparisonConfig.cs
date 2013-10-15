@@ -22,6 +22,8 @@ namespace VisualStudioComparisonTools
         public string ComparisonToolSelectionTitle = "/dl \"Selection (" + REPLACE_FILENAME + ")\"";
         public string ComparisonToolClipboardTitle = "/wr /dr \"Clipboard (ReadOnly)\"";
         public bool UseGlobalTempFolder = true;
+        public bool ShowInVS2012 = false;
+        public bool ShowInVS2013 = false;
 
         private string configFile = Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData) + Path.DirectorySeparatorChar + "Visual Studio Comparison Tools" + Path.DirectorySeparatorChar + "config.xml";
 
@@ -98,10 +100,20 @@ namespace VisualStudioComparisonTools
                 {
                     ComparisonToolSelectionTitle = config.Tables["Configuration"].Rows[0]["ComparisonToolSelectionTitle"].ToString();
                 }
-                if (config.Tables["Configuration"].Columns.IndexOf("UseGlobalTempFolder") >= 0 && 
+                if (config.Tables["Configuration"].Columns.IndexOf("UseGlobalTempFolder") >= 0 &&
                     config.Tables["Configuration"].Rows[0]["UseGlobalTempFolder"] != null)
                 {
                     UseGlobalTempFolder = config.Tables["Configuration"].Rows[0]["UseGlobalTempFolder"].ToString().StartsWith("t");
+                }
+                if (config.Tables["Configuration"].Columns.IndexOf("ShowInVS2012") >= 0 &&
+                    config.Tables["Configuration"].Rows[0]["ShowInVS2012"] != null)
+                {
+                    UseGlobalTempFolder = config.Tables["Configuration"].Rows[0]["ShowInVS2012"].ToString().StartsWith("t");
+                }
+                if (config.Tables["Configuration"].Columns.IndexOf("ShowInVS2013") >= 0 &&
+                    config.Tables["Configuration"].Rows[0]["ShowInVS2013"] != null)
+                {
+                    UseGlobalTempFolder = config.Tables["Configuration"].Rows[0]["ShowInVS2013"].ToString().StartsWith("t");
                 }
             }
 
@@ -118,7 +130,9 @@ namespace VisualStudioComparisonTools
             table.Columns.Add("ComparisonToolClipboardTitle");
             table.Columns.Add("ComparisonToolSelectionTitle");
             table.Columns.Add("UseGlobalTempFolder");
-            table.Rows.Add(new object[] { ComparisonToolPath, ComparisonToolArguments, ComparisonToolClipboardTitle, ComparisonToolSelectionTitle, UseGlobalTempFolder ? "true" : "false" });
+            table.Columns.Add("ShowInVS2012");
+            table.Columns.Add("ShowInVS2013");
+            table.Rows.Add(new object[] { ComparisonToolPath, ComparisonToolArguments, ComparisonToolClipboardTitle, ComparisonToolSelectionTitle, UseGlobalTempFolder ? "true" : "false", ShowInVS2012 ? "true" : "false", ShowInVS2013 ? "true" : "false" });
 
             string configDirectory = Path.GetDirectoryName(configFile);
             if (!Directory.Exists(configDirectory))
