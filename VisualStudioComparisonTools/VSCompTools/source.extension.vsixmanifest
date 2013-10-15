@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="aff98032-7c33-47c4-a6f6-7879970a1d68" Version="3.1.6" Language="en-US" Publisher="Mikko Halttunen" />
+    <Identity Id="aff98032-7c33-47c4-a6f6-7879970a1d68" Version="3.1.7" Language="en-US" Publisher="Mikko Halttunen" />
     <DisplayName>Visual Studio Comparison Tools</DisplayName>
     <Description xml:space="preserve">Visual Studio Comparison Tools is an extension for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file. By default uses WinMerge (http://winmerge.org/) to compare files</Description>
     <MoreInfo>https://comparisontools.codeplex.com/</MoreInfo>
