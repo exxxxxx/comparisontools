@@ -1,23 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
-  <Metadata>
-    <Identity Id="aff98032-7c33-47c4-a6f6-7879970a1d68" Version="3.1.7" Language="en-US" Publisher="Mikko Halttunen" />
-    <DisplayName>Visual Studio Comparison Tools</DisplayName>
+<Vsix xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="1.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2010">
+  <Identifier Id="4d4f9f9a-6eba-4dd8-b5ef-7d48b94a312c">
+    <Name>Visual Studio Comparison Tools</Name>
+    <Author>Mikko Halttunen</Author>
+    <Version>3.1.9</Version>
     <Description xml:space="preserve">Visual Studio Comparison Tools is an extension for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file. By default uses WinMerge (http://winmerge.org/) to compare files</Description>
-    <MoreInfo>https://comparisontools.codeplex.com/</MoreInfo>
+    <Locale>1033</Locale>
+    <MoreInfoUrl>https://comparisontools.codeplex.com/</MoreInfoUrl>
     <License>COPYING</License>
-    <ReleaseNotes>releasenotes.txt</ReleaseNotes>
-    <Icon>Resources\compare.png</Icon>
-    <Tags>Compare Comparison</Tags>
-  </Metadata>
-  <Installation InstalledByMsi="false">
-    <InstallationTarget Id="Microsoft.VisualStudio.Pro" Version="[11.0,12.0]" />
-  </Installation>
-  <Dependencies>
-    <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="4.5" />
-    <Dependency Id="Microsoft.VisualStudio.MPF.11.0" DisplayName="Visual Studio MPF 11.0" d:Source="Installed" Version="11.0" />
-  </Dependencies>
-  <Assets>
-    <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />
-  </Assets>
-</PackageManifest>
+    <Icon>compare.ico</Icon>
+    <InstalledByMsi>false</InstalledByMsi>
+    <SupportedProducts>
+      <VisualStudio Version="10.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="11.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="12.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+    </SupportedProducts>
+    <SupportedFrameworkRuntimeEdition MinVersion="4.0" MaxVersion="10.0" />
+  </Identifier>
+  <References>
+    <Reference Id="Microsoft.VisualStudio.MPF" MinVersion="10.0">
+      <Name>Visual Studio MPF</Name>
+    </Reference>
+  </References>
+  <Content>
+    <VsPackage>|%CurrentProject%;PkgdefProjectOutputGroup|</VsPackage>
+  </Content>
+</Vsix>

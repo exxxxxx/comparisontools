@@ -1,4 +1,7 @@
-﻿3.1.6	- 2013-10-15
+﻿3.1.9	- 2013-10-15
+ - Support for visual studio 2010
+
+3.1.6	- 2013-10-15
  - Search for beyond compare first if it has been installed to default folder ("C:\Program Files (x86)\Beyond Compare 3" or "C:\Program Files\Beyond Compare 3")
 
 3.1.2	- 2013-10-15
