@@ -1,4 +1,7 @@
-﻿3.1.12	- 2013-10-16
+﻿3.1.20	- 2014-12-02
+ - Support for VS 2015
+
+3.1.12	- 2013-10-16
  - Command line parameters were getting reset to beyond compare when the comparison tool changed
 
 3.1.11	- 2013-10-16

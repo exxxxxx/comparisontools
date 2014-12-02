@@ -3,7 +3,7 @@
   <Identifier Id="4d4f9f9a-6eba-4dd8-b5ef-7d48b94a312c">
     <Name>Visual Studio Comparison Tools</Name>
     <Author>Mikko Halttunen</Author>
-    <Version>3.1.12</Version>
+    <Version>3.1.20</Version>
     <Description xml:space="preserve">Visual Studio Comparison Tools is an extension for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file. By default uses WinMerge (http://winmerge.org/) to compare files</Description>
     <Locale>1033</Locale>
     <MoreInfoUrl>https://comparisontools.codeplex.com/</MoreInfoUrl>
@@ -22,6 +22,21 @@
         <Edition>Pro</Edition>
       </VisualStudio>
       <VisualStudio Version="12.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="13.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="14.0">
+        <Edition>Ultimate</Edition>
+        <Edition>Premium</Edition>
+        <Edition>Pro</Edition>
+      </VisualStudio>
+      <VisualStudio Version="15.0">
         <Edition>Ultimate</Edition>
         <Edition>Premium</Edition>
         <Edition>Pro</Edition>
