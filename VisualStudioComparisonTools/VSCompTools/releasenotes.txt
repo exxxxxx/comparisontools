@@ -1,4 +1,11 @@
-﻿3.1.9	- 2013-10-15
+﻿3.1.12	- 2013-10-16
+ - Command line parameters were getting reset to beyond compare when the comparison tool changed
+
+3.1.11	- 2013-10-16
+ - Fixed UseGlobalConfig
+ - Fixed command line parameters for beyond compare
+
+3.1.10	- 2013-10-15
  - Support for visual studio 2010
 
 3.1.6	- 2013-10-15

@@ -17,12 +17,18 @@ namespace VisualStudioComparisonTools
         public const string REPLACE_SELECTION_TITLE = "[%SELECTION_TITLE%]";
         public const string REPLACE_CLIPBOARD_TITLE = "[%CLIPBOARD_TITLE%]";
         public const string ComparisonToolPath_BCOMP = "C:\\Program Files (x86)\\Beyond Compare 3\\BComp.exe";
+        public const string ComparisonToolArguments_BCOMP = "" + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + " \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\"";
+        public const string ComparisonToolSelectionTitle_BCOMP = "/lefttitle=\"Selection (" + REPLACE_FILENAME + ")\"";
+        public const string ComparisonToolClipboardTitle_BCOMP = "/rro /righttitle=\"Clipboard (ReadOnly)\"";
         public const string ComparisonToolPath_WinMerge = "C:\\Program Files (x86)\\WinMerge\\WinMergeU.exe";
+        public const string ComparisonToolArguments_WinMerge = "/u " + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + " \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\"";
+        public const string ComparisonToolSelectionTitle_WinMerge = "/dl \"Selection (" + REPLACE_FILENAME + ")\"";
+        public const string ComparisonToolClipboardTitle_WinMerge = "/wr /dr \"Clipboard (ReadOnly)\"";
 
         public string ComparisonToolPath = ComparisonToolPath_BCOMP;
-        public string ComparisonToolArguments = "/ub " + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + " \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\"";
-        public string ComparisonToolSelectionTitle = "/dl \"Selection (" + REPLACE_FILENAME + ")\"";
-        public string ComparisonToolClipboardTitle = "/wr /dr \"Clipboard (ReadOnly)\"";
+        public string ComparisonToolArguments = ComparisonToolArguments_BCOMP;
+        public string ComparisonToolSelectionTitle = ComparisonToolSelectionTitle_BCOMP;
+        public string ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_BCOMP;
         public bool UseGlobalTempFolder = true;
         public bool ShowInVS2012 = false;
         public bool ShowInVS2013 = false;
@@ -51,6 +57,7 @@ namespace VisualStudioComparisonTools
             if (config.Tables["Configuration"] != null &&
                 config.Tables["Configuration"].Rows.Count > 0)
             {
+                bool compToolChanged = false;
                 log.Debug("Configuration table found");
                 if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolPath") >= 0 && 
                     config.Tables["Configuration"].Rows[0]["ComparisonToolPath"] != null)
@@ -60,6 +67,7 @@ namespace VisualStudioComparisonTools
                     log.Debug("Comparisontoolpath is " + ComparisonToolPath);
                     if (!File.Exists(ComparisonToolPath))
                     {
+                        compToolChanged = true;
                         ComparisonToolPath = ComparisonToolPath_BCOMP;
                         if (!File.Exists(ComparisonToolPath))
                         {
@@ -71,6 +79,9 @@ namespace VisualStudioComparisonTools
                                 ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
                             }
                         }
+                        ComparisonToolArguments = ComparisonToolArguments_BCOMP;
+                        ComparisonToolSelectionTitle = ComparisonToolSelectionTitle_BCOMP;
+                        ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_BCOMP;
 
                         if (!File.Exists(ComparisonToolPath))
                         {
@@ -99,25 +110,33 @@ namespace VisualStudioComparisonTools
                                     ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
                                 }
                             }
+                            ComparisonToolArguments = ComparisonToolArguments_WinMerge;
+                            ComparisonToolSelectionTitle = ComparisonToolSelectionTitle_WinMerge;
+                            ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_WinMerge;
                         }
+
+
                     }
 
                     log.Debug("Resulting comparisontoolpath is " + ComparisonToolPath);
                 }
-                if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolArguments") >= 0 && 
-                    config.Tables["Configuration"].Rows[0]["ComparisonToolArguments"] != null)
+                if (!compToolChanged)
                 {
-                    ComparisonToolArguments = config.Tables["Configuration"].Rows[0]["ComparisonToolArguments"].ToString();
-                }
-                if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolClipboardTitle") >= 0 && 
-                    config.Tables["Configuration"].Rows[0]["ComparisonToolClipboardTitle"] != null)
-                {
-                    ComparisonToolClipboardTitle = config.Tables["Configuration"].Rows[0]["ComparisonToolClipboardTitle"].ToString();
-                }
-                if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolSelectionTitle") >= 0 && 
-                    config.Tables["Configuration"].Rows[0]["ComparisonToolSelectionTitle"] != null)
-                {
-                    ComparisonToolSelectionTitle = config.Tables["Configuration"].Rows[0]["ComparisonToolSelectionTitle"].ToString();
+                    if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolArguments") >= 0 && 
+                        config.Tables["Configuration"].Rows[0]["ComparisonToolArguments"] != null)
+                    {
+                        ComparisonToolArguments = config.Tables["Configuration"].Rows[0]["ComparisonToolArguments"].ToString();
+                    }
+                    if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolClipboardTitle") >= 0 && 
+                        config.Tables["Configuration"].Rows[0]["ComparisonToolClipboardTitle"] != null)
+                    {
+                        ComparisonToolClipboardTitle = config.Tables["Configuration"].Rows[0]["ComparisonToolClipboardTitle"].ToString();
+                    }
+                    if (config.Tables["Configuration"].Columns.IndexOf("ComparisonToolSelectionTitle") >= 0 && 
+                        config.Tables["Configuration"].Rows[0]["ComparisonToolSelectionTitle"] != null)
+                    {
+                        ComparisonToolSelectionTitle = config.Tables["Configuration"].Rows[0]["ComparisonToolSelectionTitle"].ToString();
+                    }
                 }
                 if (config.Tables["Configuration"].Columns.IndexOf("UseGlobalTempFolder") >= 0 &&
                     config.Tables["Configuration"].Rows[0]["UseGlobalTempFolder"] != null)
@@ -127,12 +146,12 @@ namespace VisualStudioComparisonTools
                 if (config.Tables["Configuration"].Columns.IndexOf("ShowInVS2012") >= 0 &&
                     config.Tables["Configuration"].Rows[0]["ShowInVS2012"] != null)
                 {
-                    UseGlobalTempFolder = config.Tables["Configuration"].Rows[0]["ShowInVS2012"].ToString().StartsWith("t");
+                    ShowInVS2012 = config.Tables["Configuration"].Rows[0]["ShowInVS2012"].ToString().StartsWith("t");
                 }
                 if (config.Tables["Configuration"].Columns.IndexOf("ShowInVS2013") >= 0 &&
                     config.Tables["Configuration"].Rows[0]["ShowInVS2013"] != null)
                 {
-                    UseGlobalTempFolder = config.Tables["Configuration"].Rows[0]["ShowInVS2013"].ToString().StartsWith("t");
+                    ShowInVS2013 = config.Tables["Configuration"].Rows[0]["ShowInVS2013"].ToString().StartsWith("t");
                 }
             }
 
