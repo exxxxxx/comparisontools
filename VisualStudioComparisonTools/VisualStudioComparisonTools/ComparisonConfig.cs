@@ -33,26 +33,29 @@ namespace VisualStudioComparisonTools
         public bool ShowInVS2012 = false;
         public bool ShowInVS2013 = false;
 
-        private string configFile = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar + "Visual Studio Comparison Tools" + Path.DirectorySeparatorChar + "config.xml";
+        public readonly string ConfigPath;
+        public readonly string ConfigFile;
 
         public ComparisonConfig()
         {
+            ConfigPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData) + Path.DirectorySeparatorChar + "Visual Studio Comparison Tools";
+            ConfigFile = ConfigPath + Path.DirectorySeparatorChar + "config.xml";
         }
 
         public void Load()
         {
             log.Debug("Loading config");
 
-            if (!File.Exists(configFile))
+            if (!File.Exists(ConfigFile))
             {
                 log.Debug("Config file did not exist. Creating new.");
                 Save();
             }
             DataSet config = new DataSet();
-            if (File.Exists(configFile))
+            if (File.Exists(ConfigFile))
             {
                 log.Debug("Found config file. Reading xml");
-                config.ReadXml(configFile);
+                config.ReadXml(ConfigFile);
             }
             if (config.Tables["Configuration"] != null &&
                 config.Tables["Configuration"].Rows.Count > 0)
@@ -172,16 +175,16 @@ namespace VisualStudioComparisonTools
             table.Columns.Add("ShowInVS2013");
             table.Rows.Add(new object[] { ComparisonToolPath, ComparisonToolArguments, ComparisonToolClipboardTitle, ComparisonToolSelectionTitle, UseGlobalTempFolder ? "true" : "false", ShowInVS2012 ? "true" : "false", ShowInVS2013 ? "true" : "false" });
 
-            string configDirectory = Path.GetDirectoryName(configFile);
+            string configDirectory = Path.GetDirectoryName(ConfigFile);
             if (!Directory.Exists(configDirectory))
             {
                 Directory.CreateDirectory(configDirectory);
             }
-            if (File.Exists(configFile))
+            if (File.Exists(ConfigFile))
             {
-                File.Delete(configFile);
+                File.Delete(ConfigFile);
             }
-            config.WriteXml(configFile);
+            config.WriteXml(ConfigFile);
         }
     }
 }

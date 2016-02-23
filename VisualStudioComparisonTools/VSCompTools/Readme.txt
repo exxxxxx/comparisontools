@@ -1,6 +1,6 @@
 ﻿VisualStudioComparisonTools
 
-Copyright 2013 Mikko Halttunen
+Copyright 2016 Mikko Halttunen
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; version 2 of the License.
@@ -23,6 +23,11 @@ Prerequisites
     * Requires a comparison util such as WinMerge
     * Tested with WinMerge and Beyond Compare 3. Write to the comments if you encounter problems setting up other tools!
 
+Installation for vs 2010+ through visual studio
+
+Problems (with vs 2010+)
+    
+	*  Copy the log4net.config file to "C:\Users\USERNAME\AppData\Roaming\Visual Studio Comparison Tools" with name VisualStudioComparisonTools.dll.log4net and change the FATAL to DEBUG
 
 Installation (of the add-in version)
 

@@ -161,6 +161,9 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
+    <Content Include="VisualStudioComparisonTools.dll.log4net">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="VSCompTools.vsct">
@@ -194,14 +197,15 @@
     <Content Include="Resources\compare16.bmp">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Content Include="Jutut.txt">
+    <None Include="Jutut.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
+    </None>
     <Content Include="log4net.LICENSE.txt">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
-    <Resource Include="Readme.txt" />
+    <Content Include="Readme.txt">
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
     <Content Include="Resources\Package.ico">
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>

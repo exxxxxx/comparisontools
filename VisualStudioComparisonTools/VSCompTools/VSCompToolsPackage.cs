@@ -71,6 +71,17 @@ namespace VSCompTools
         /// </summary>
         protected override void Initialize()
         {
+            var log4netconfig = config.ConfigPath + Path.DirectorySeparatorChar + "VisualStudioComparisonTools.dll.log4net";
+            if (File.Exists(log4netconfig))
+            {
+                var configFile = new FileInfo(log4netconfig);
+                XmlConfigurator.Configure(configFile);
+            }
+            else
+            {
+                XmlConfigurator.Configure();
+            }
+            
             Debug.WriteLine (string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
@@ -81,8 +92,7 @@ namespace VSCompTools
             }
             catch (Exception ex)
             {
-                log.Debug(ex);
-                throw;
+                log.Error(ex);
             }
 
             // Add our command handlers for menu (commands must exist in the .vsct file)
