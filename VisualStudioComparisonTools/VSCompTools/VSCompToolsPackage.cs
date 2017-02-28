@@ -40,6 +40,7 @@ namespace VSCompTools
     // This attribute is needed to let the shell know that this package exposes some menus.
     [ProvideMenuResource("Menus.ctmenu", 1)]
     [Guid(GuidList.guidVSCompToolsPkgString)]
+    [ProvideOptionPage(typeof(SettingsUI), "Visual Studio Comparison Tools", "Settings", 0, 0, true)]
     public sealed class VSCompToolsPackage : Package
     {
         private static readonly ILog log = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
