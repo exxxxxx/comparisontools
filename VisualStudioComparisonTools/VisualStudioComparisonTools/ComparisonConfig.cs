@@ -71,7 +71,21 @@ namespace VisualStudioComparisonTools
                     if (!File.Exists(ComparisonToolPath))
                     {
                         compToolChanged = true;
-                        ComparisonToolPath = ComparisonToolPath_BCOMP;
+
+                        log.Debug("The file in comparison toolpath not found! Checking if beyond compare exists.");
+                        var bcompareKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\BCompare.exe");
+                        if (bcompareKey != null)
+                        {
+                            log.Debug("Beyond Compare found from registry");
+                            var path = bcompareKey.GetValue("") as string;
+                            if (path != null && File.Exists(path))
+                            {
+                                log.Debug("Beyond Compare exe path found from file system. Using that");
+                                path = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + "BComp.exe";
+                                ComparisonToolPath = path;
+                            }
+                        }
+
                         if (!File.Exists(ComparisonToolPath))
                         {
                             log.Debug("Still could not find comparison toolpath exe from file system. Try to change program files x86 to no x86");
@@ -82,6 +96,20 @@ namespace VisualStudioComparisonTools
                                 ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
                             }
                         }
+
+                        if (!File.Exists(ComparisonToolPath))
+                        {
+                            ComparisonToolPath = ComparisonToolPath_BCOMP;
+
+                            log.Debug("Still could not find comparison toolpath exe from file system. Try to change program files x86 to no x86");
+                            ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files (x86)\\", ":\\Program Files\\");
+                            if (!File.Exists(ComparisonToolPath))
+                            {
+                                log.Debug("Nope. Try the other way around");
+                                ComparisonToolPath = ComparisonToolPath.Replace(":\\Program Files\\", ":\\Program Files (x86)\\");
+                            }
+                        }
+                        
                         ComparisonToolArguments = ComparisonToolArguments_BCOMP;
                         ComparisonToolSelectionTitle = ComparisonToolSelectionTitle_BCOMP;
                         ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_BCOMP;
