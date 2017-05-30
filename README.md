@@ -14,7 +14,7 @@ Visual Studio Gallery Page: [https://marketplace.visualstudio.com/items?itemName
 * Double click the vsix file of  found from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2010/VSCompTools.vsix]
 
 **Add-In Installation (For VS 2005/2008) Build 2.2**
-* Download the installation package from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2008/VSCompTools.vsix]
+* Download the installation package from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2008/VisualStudioComparisonToolsSetup.msi]
 * Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
 
 **Usage**
