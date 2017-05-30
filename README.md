@@ -4,16 +4,17 @@ Visual Studio Comparison Tools is a add-in for Visual Studio which uses external
 Visual Studio Gallery Page: [https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools](https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools)
 
 **Prerequisites**
-* Requires a comparison util such as WinMerge
-* Tested with WinMerge and Beyond Compare 3. Write to the comments if you encounter problems setting up other tools!
+* Requires a comparison util such as WinMerge or Beyond Compare
+* Tested with WinMerge and Beyond Compare 3 & 4. Write to the comments if you encounter problems setting up other tools!
 
-**Extension Installation (For VS 2012/2013/2015)**
+**Extension Installation (For VS 2012/2013/2015/2017)**
 * Install through visual studio Extension Manager or by double clicking the vsix file
 
 **Extension Installation (For VS 2010) Build 3.1.40**
-* Double click the vsix file of  found from XXX
+* Double click the vsix file of  found from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2010/VSCompTools.vsix]
 
 **Add-In Installation (For VS 2005/2008) Build 2.2**
+* Download the installation package from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2008/VSCompTools.vsix]
 * Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
 
 **Usage**
