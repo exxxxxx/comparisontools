@@ -1,16 +1,19 @@
 ## Project Description
 Visual Studio Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
 
-Visual Studio Gallery Page: [http://visualstudiogallery.msdn.microsoft.com/4a139744-7b66-4976-abbd-184323333a0a](http://visualstudiogallery.msdn.microsoft.com/4a139744-7b66-4976-abbd-184323333a0a)
+Visual Studio Gallery Page: [https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools](https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools)
 
 **Prerequisites**
 * Requires a comparison util such as WinMerge
 * Tested with WinMerge and Beyond Compare 3. Write to the comments if you encounter problems setting up other tools!
 
-**Extension Installation (For VS 2010/2012/2013/2015)**
+**Extension Installation (For VS 2012/2013/2015)**
 * Install through visual studio Extension Manager or by double clicking the vsix file
 
-**Add-In Installation (For VS 2005/2008)**
+**Extension Installation (For VS 2010) Build 3.1.40**
+* Double click the vsix file of  found from XXX
+
+**Add-In Installation (For VS 2005/2008) Build 2.2**
 * Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
 
 **Usage**
@@ -49,7 +52,13 @@ Visual Studio Gallery Page: [http://visualstudiogallery.msdn.microsoft.com/4a139
 	* Go to the command prompt. Go to the location of devenv.exe (for example "C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE")
 	* Write "devenv.exe /resetaddin VisualStudioComparisonTools.Connect" and press enter.
 * If you encounter any problems, copy the file "VisualStudioComparisonTools.dll.log4net" and log4net.dll from the application directory to the location of devenv.exe. A VisualStudioComparisonTools-log.txt file will be created.
-	* Visual studio 2013:
+	* Visual studio 2017:
+		* C:\Program Files\Microsoft Visual Studio 15.0\Common7\IDE
+		* C:\Program Files (x86)\Microsoft Visual Studio 15.0\Common7\IDE
+    * Visual studio 2015:
+		* C:\Program Files\Microsoft Visual Studio 14.0\Common7\IDE
+		* C:\Program Files (x86)\Microsoft Visual Studio 14.0\Common7\IDE
+    * Visual studio 2013:
 		* C:\Program Files\Microsoft Visual Studio 12.0\Common7\IDE
 		* C:\Program Files (x86)\Microsoft Visual Studio 12.0\Common7\IDE
 	* Visual studio 2012:

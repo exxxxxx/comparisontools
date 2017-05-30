@@ -214,6 +214,7 @@
     </Content>
     <Content Include="Resources\Package.ico">
       <IncludeInVSIX>true</IncludeInVSIX>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   <ItemGroup>
