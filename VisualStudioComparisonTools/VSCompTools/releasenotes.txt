@@ -1,4 +1,7 @@
-﻿3.1.40	- 2016-02-23
+﻿3.1.41	- 2017-02-28
+ - Support for VS 2017
+
+3.1.40	- 2016-02-23
  - Fixed log4net logging. Copy the log4net.config file to "C:\Users\USERNAME\AppData\Roaming\Visual Studio Comparison Tools" with name VisualStudioComparisonTools.dll.log4net and change the FATAL to DEBUG
 
 3.1.20	- 2014-12-02
