@@ -1,3 +1,8 @@
+Use devenv to compare 2013+:
+https://elbruno.com/2015/12/22/vs2015-compare-2-external-files-in-visual-studio-from-the-ide/
+use the vsdiffmerge:
+https://stackoverflow.com/questions/13752998/compare-two-files-in-visual-studio-2012
+
 http://www.mztools.com/articles/2008/MZ2008001.aspx
 
 To use WinMerge as the Compare/Diff tool:
