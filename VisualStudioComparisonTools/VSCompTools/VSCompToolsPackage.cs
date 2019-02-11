@@ -85,10 +85,12 @@ namespace VSCompTools
             Debug.WriteLine (string.Format(CultureInfo.CurrentCulture, "Entering Initialize() of: {0}", this.ToString()));
             base.Initialize();
 
+            DTE _applicationObject = GetService(typeof(SDTE)) as DTE;
+
             try
             {
                 log.Debug("Loading config");
-                config.Load();
+                config.Load(_applicationObject.FullName);
             }
             catch (Exception ex)
             {

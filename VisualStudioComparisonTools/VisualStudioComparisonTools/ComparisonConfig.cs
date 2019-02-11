@@ -24,6 +24,10 @@ namespace VisualStudioComparisonTools
         public const string ComparisonToolArguments_WinMerge = "/u " + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + " \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\"";
         public const string ComparisonToolSelectionTitle_WinMerge = "/dl \"Selection (" + REPLACE_FILENAME + ")\"";
         public const string ComparisonToolClipboardTitle_WinMerge = "/wr /dr \"Clipboard (ReadOnly)\"";
+        public const string ComparisonToolPath_VSDiff = "C:\\Program Files (x86)\\Microsoft Visual Studio 14.0\\Common7\\IDE\\devenv.exe";
+        public const string ComparisonToolArguments_VSDiff = "/diff \"" + REPLACE_FILE_PARAM1 + "\" \"" + REPLACE_FILE_PARAM2 + "\" " + REPLACE_SELECTION_TITLE + " " + REPLACE_CLIPBOARD_TITLE + "";
+        public const string ComparisonToolSelectionTitle_VSDiff = "\"Selection (" + REPLACE_FILENAME + ")\"";
+        public const string ComparisonToolClipboardTitle_VSDiff = "\"Clipboard (ReadOnly)\"";
 
         public string ComparisonToolPath = ComparisonToolPath_BCOMP;
         public string ComparisonToolArguments = ComparisonToolArguments_BCOMP;
@@ -42,7 +46,7 @@ namespace VisualStudioComparisonTools
             ConfigFile = ConfigPath + Path.DirectorySeparatorChar + "config.xml";
         }
 
-        public void Load()
+        public void Load(string executingVSPath)
         {
             log.Debug("Loading config");
 
@@ -146,6 +150,31 @@ namespace VisualStudioComparisonTools
                             ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_WinMerge;
                         }
 
+                        if (!File.Exists(ComparisonToolPath))
+                        {
+                            log.Debug("The file in comparison toolpath not found! Checking if devenv exists.");
+
+                            ComparisonToolPath = executingVSPath;
+                            if (!File.Exists(ComparisonToolPath))
+                            {
+                                var devenvKey = Registry.LocalMachine.OpenSubKey("SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\App Paths\\devenv.exe");
+                                if (devenvKey != null)
+                                {
+                                    log.Debug("DevEnv found from registry");
+                                    var path = devenvKey.GetValue("") as string;
+                                    if (path != null && File.Exists(path))
+                                    {
+                                        log.Debug("DevEnv exe path found from file system. Using that");
+                                        path = Path.GetDirectoryName(path) + Path.DirectorySeparatorChar + "devenv.exe";
+                                        ComparisonToolPath = path;
+                                    }
+                                }
+                            }
+
+                            ComparisonToolArguments = ComparisonToolArguments_VSDiff;
+                            ComparisonToolSelectionTitle = ComparisonToolSelectionTitle_VSDiff;
+                            ComparisonToolClipboardTitle = ComparisonToolClipboardTitle_VSDiff;
+                        }
 
                     }
 
