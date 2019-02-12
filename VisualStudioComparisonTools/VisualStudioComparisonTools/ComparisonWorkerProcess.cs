@@ -270,22 +270,29 @@ namespace VisualStudioComparisonTools
             {
                 log.Error(e);
 
-                if (tempFiles != null)
+                try
                 {
-                    if (!IsFirstFileReal())
+                    if (tempFiles != null)
                     {
-                        log.Info("Deleting temporary file for selection");
+                        if (!IsFirstFileReal())
+                        {
+                            log.Info("Deleting temporary file for selection");
 
-                        File.Delete(tempFiles[0]);
-                    }
-                    if (!IsSecondFileReal())
-                    {
-                        log.Info("Deleting temporary file for clipboard");
+                            File.Delete(tempFiles[0]);
+                        }
+                        if (!IsSecondFileReal())
+                        {
+                            log.Info("Deleting temporary file for clipboard");
 
-                        File.Delete(tempFiles[1]);
+                            File.Delete(tempFiles[1]);
+                        }
                     }
+                    Connect.ShowThreadExceptionDialog(e);
                 }
-                Connect.ShowThreadExceptionDialog(e);
+                catch (Exception ex)
+                {
+                    log.Error(ex);
+                }
             }
             log.Info("End");
         }

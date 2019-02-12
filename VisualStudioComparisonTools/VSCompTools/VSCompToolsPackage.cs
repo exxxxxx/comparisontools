@@ -65,6 +65,26 @@ namespace VSCompTools
         // Overridden Package Implementation
         #region Package Members
 
+        private void InitializeLog4NetLogFile(string log4netconfigPath)
+        {
+            try
+            {
+                var assembly = Assembly.GetExecutingAssembly();
+                var resourceName = "VSCompTools.VisualStudioComparisonTools.dll.log4net";
+
+                using (Stream stream = assembly.GetManifestResourceStream(resourceName))
+                using (StreamReader reader = new StreamReader(stream))
+                {
+                    string result = reader.ReadToEnd();
+                    File.WriteAllText(log4netconfigPath, result);
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine(string.Format(CultureInfo.CurrentCulture, "Failed to initialize log4net config file: " + e));
+            }
+        }
+
         /// <summary>
         /// Initialization of the package; this method is called right after the package is sited, so this is the place
         /// where you can put all the initialization code that rely on services provided by VisualStudio.
@@ -72,6 +92,12 @@ namespace VSCompTools
         protected override void Initialize()
         {
             var log4netconfig = config.ConfigPath + Path.DirectorySeparatorChar + "VisualStudioComparisonTools.dll.log4net";
+
+            if (!File.Exists(log4netconfig))
+            {
+                InitializeLog4NetLogFile(log4netconfig);
+            }
+            
             if (File.Exists(log4netconfig))
             {
                 var configFile = new FileInfo(log4netconfig);

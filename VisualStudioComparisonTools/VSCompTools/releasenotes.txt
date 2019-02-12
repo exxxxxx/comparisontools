@@ -1,5 +1,5 @@
-﻿3.3.2	- 2019-02-11
- - Added Visual Studio Diff as a fallback if Beyond Compare nor WinMerge is found. Still problems with copying cliboard with a text selection! 
+﻿3.3.13	- 2019-02-12
+ - Added Visual Studio Diff as a fallback if Beyond Compare nor WinMerge is found. Problems with comparing cliboard and a text selection!
 
 3.3.1	- 2019-02-11
  - Support for VS 2019

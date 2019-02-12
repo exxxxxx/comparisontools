@@ -4,6 +4,7 @@ using System.Text;
 using System.Data;
 using System.IO;
 using Microsoft.Win32;
+using System.Reflection;
 
 namespace VisualStudioComparisonTools
 {
@@ -242,6 +243,8 @@ namespace VisualStudioComparisonTools
                 File.Delete(ConfigFile);
             }
             config.WriteXml(ConfigFile);
+
+            
         }
     }
 }

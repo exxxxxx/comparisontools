@@ -146,9 +146,9 @@
     <None Include="source.extension.vsixmanifest">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="VisualStudioComparisonTools.dll.log4net">
-      <IncludeInVSIX>true</IncludeInVSIX>
-    </Content>
+    <EmbeddedResource Include="VisualStudioComparisonTools.dll.log4net">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <VSCTCompile Include="VSCompTools.vsct">
