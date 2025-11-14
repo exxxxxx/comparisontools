@@ -1,5 +1,5 @@
 ## Project Description
-Visual Studio Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
+Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
 
 Visual Studio Gallery Page: [https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools](https://marketplace.visualstudio.com/items?itemName=MikkoHalttunen.VisualStudioComparisonTools)
 
@@ -15,7 +15,7 @@ Visual Studio Gallery Page: [https://marketplace.visualstudio.com/items?itemName
 
 **Add-In Installation (For VS 2005/2008) Build 2.2**
 * Download the installation package from [https://github.com/exxxxxx/comparisontools/raw/master/Publish/2008/VisualStudioComparisonToolsSetup.msi]
-* Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The VisualStudioComparisonTools add-in can be used next time Visual Studio is restarted.
+* Running the setup will copy files "VisualStudioComparisonTools.dll" and "VisualStudioComparisonTools.addin" to Visual Studio's add-in directory. The ComparisonTools add-in can be used next time Visual Studio is restarted.
 
 **Usage**
 * **Compare to Clipboard** has two different compare modes:
