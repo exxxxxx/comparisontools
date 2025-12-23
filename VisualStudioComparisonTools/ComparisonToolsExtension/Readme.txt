@@ -1,6 +1,6 @@
 ﻿ComparisonToolsExtension
 
-Copyright 2016 Mikko Halttunen
+Copyright 2008 Mikko Halttunen
 This program is free software; you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation; version 2 of the License.
@@ -16,20 +16,15 @@ with this program; if not, write to the Free Software Foundation, Inc.,
 
 ----------
 
-Comparison Tools Extension is an extension for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
+Comparison Tools Extension is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
 
 Prerequisites
 
     * Requires a comparison util such as WinMerge
-    * Tested with WinMerge and Beyond Compare 3. Write to the comments if you encounter problems setting up other tools!
+    * Tested only with WinMerge. Write to the comments if you encounter problems setting up other tools!
 
-Installation for vs 2010+ through visual studio
 
-Problems (with vs 2010+)
-    
-	*  Copy the log4net.config file to "C:\Users\USERNAME\AppData\Roaming\Comparison Tools Extension" with name ComparisonToolsExtension.dll.log4net and change the FATAL to DEBUG
-
-Installation (of the add-in version)
+Installation
 
     * Running the setup will copy files "ComparisonToolsExtension.dll" and "ComparisonToolsExtension.addin" to Visual Studio's add-in directory. The ComparisonToolsExtension add-in can be used next time Visual Studio is restarted.
 
@@ -69,7 +64,7 @@ Configuration
     * ComparisonToolsExtension will use system temp directory to store temporary files, but it can be configured to store them solution's directory under _ComparisonToolsExtension folder
 
 
-Problems (Add-in version)
+Problems
 
     * If the "Compare to Clipboard" text doesn't appear in the right click context menu, try the following:
           o Go to the command prompt. Go to the location of devenv.exe (for example "C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE")
@@ -81,6 +76,8 @@ Problems (Add-in version)
           o Visual studio 2008:
                 + C:\Program Files\Microsoft Visual Studio 9.0\Common7\IDE
                 + C:\Program Files (x86)\Microsoft Visual Studio 9.0\Common7\IDE
+    * Visual studio 2010 support coming soon
+    * Problems with web site projects: Menu items not visible always
     * Cannot compare files between projects
 
 

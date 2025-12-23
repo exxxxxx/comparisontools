@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36717.8
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComparisonToolsExtension", "ComparisonToolsExtension\ComparisonToolsExtension.csproj", "{9DAFAE92-BD43-4888-A87C-022404817FA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VSCompTools", "VSCompTools\VSCompTools.csproj", "{3B6DEF8B-E0F8-4B63-97C7-137836F8F954}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CompToolsEx", "CompToolsEx\CompToolsEx.csproj", "{F339B318-9189-4311-941B-9C06C07325AA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9DAFAE92-BD43-4888-A87C-022404817FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DAFAE92-BD43-4888-A87C-022404817FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DAFAE92-BD43-4888-A87C-022404817FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DAFAE92-BD43-4888-A87C-022404817FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B6DEF8B-E0F8-4B63-97C7-137836F8F954}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B6DEF8B-E0F8-4B63-97C7-137836F8F954}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B6DEF8B-E0F8-4B63-97C7-137836F8F954}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B6DEF8B-E0F8-4B63-97C7-137836F8F954}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F339B318-9189-4311-941B-9C06C07325AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F339B318-9189-4311-941B-9C06C07325AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F339B318-9189-4311-941B-9C06C07325AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F339B318-9189-4311-941B-9C06C07325AA}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4B370CB9-DF12-4ACC-B8F6-198D0D73C0D3}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

@@ -15,7 +15,7 @@ using Microsoft.VisualStudio;
 using Microsoft.VisualStudio.Shell.Interop;
 using Microsoft.VisualStudio.OLE.Interop;
 using Microsoft.VisualStudio.Shell;
-using VisualStudioComparisonTools;
+using ComparisonToolsExtension;
 
 [assembly: XmlConfigurator(ConfigFileExtension = "log4net", Watch = true)]
 
@@ -70,7 +70,7 @@ namespace VSCompTools
             try
             {
                 var assembly = Assembly.GetExecutingAssembly();
-                var resourceName = "VSCompTools.VisualStudioComparisonTools.dll.log4net";
+                var resourceName = "VSCompTools.ComparisonToolsExtension.dll.log4net";
 
                 using (Stream stream = assembly.GetManifestResourceStream(resourceName))
                 using (StreamReader reader = new StreamReader(stream))
@@ -91,7 +91,7 @@ namespace VSCompTools
         /// </summary>
         protected override void Initialize()
         {
-            var log4netconfig = config.ConfigPath + Path.DirectorySeparatorChar + "VisualStudioComparisonTools.dll.log4net";
+            var log4netconfig = config.ConfigPath + Path.DirectorySeparatorChar + "ComparisonToolsExtension.dll.log4net";
 
             if (!File.Exists(log4netconfig))
             {
