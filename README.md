@@ -1,3 +1,5 @@
+## Project set to private in the visual studio market place due to name change requirements!
+
 ## Project Description
 Comparison Tools is a add-in for Visual Studio which uses external tools to compare files, folders and clipboard. Features: Comparing two files, selecting folders for comparison from the solution explorer and comparing (and merging) clipboard to a file or selected area in a file
 
